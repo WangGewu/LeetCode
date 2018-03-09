@@ -9,7 +9,7 @@
 class Solution {
 public:
 	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-		int flag = 0;//¼ÇÂ¼½øÎ»
+		int flag = 0;//è®°å½•è¿›ä½
 		int k = (l1->val + l2->val) % 10;
 		if (l1->val + l2->val >= 10)flag = 1;
 		ListNode *head = new ListNode(k);
