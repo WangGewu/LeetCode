@@ -10,7 +10,7 @@ public:
             while (j<s.size())
             {
                 result += s[j];
-                //´¦ÀíÖÐ¼äÐÐ
+                //å¤„ç†ä¸­é—´è¡Œ
                 if (i>0 && i<numRows - 1)
                 {
                     if ((numRows - i - 1) * 2 + j<s.size())
