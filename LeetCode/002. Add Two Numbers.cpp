@@ -48,7 +48,7 @@ public:
 				flag = 0;
 			q = q->next;
 		}
-		if (flag)
+		if (flag)//最后一位处理后还有进位
 		{
 			ListNode *temp = new ListNode(1);
 			front->next = temp;
