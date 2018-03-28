@@ -1,5 +1,3 @@
-#include<vector>
-using namespace std;
 class Solution {
 public:
     void solveSudoku(vector<vector<char>>& board)
@@ -19,21 +17,21 @@ public:
                             return true;
                         board[i][j] = '.';
                     }
-                    return false;//»ØËİ
+                    return false;//å›æº¯
                 }
             }
         return true;
     }
     bool isValidSudoku(vector<vector<char>>& board) {
-        vector<vector<int>>a(9, vector<int>(9, 0));//ĞĞ
-        vector<vector<int>>b(9, vector<int>(9, 0));//ÁĞ
-        vector<vector<int>>c(9, vector<int>(9, 0));//¾Å¹¬¸ñ
+        vector<vector<int>>a(9, vector<int>(9, 0));//è¡Œ
+        vector<vector<int>>b(9, vector<int>(9, 0));//åˆ—
+        vector<vector<int>>c(9, vector<int>(9, 0));//ä¹å®«æ ¼
         for (int i = 0; i<9; i++)
             for (int j = 0; j < 9; j++)
             {
                 if (board[i][j] != '.') {
                     int num = board[i][j] - '0' - 1;
-                    int k = i / 3 * 3 + j / 3;//¼ÆËãµ±Ç°i,j´¦ÓÚÄÄÒ»¸ö¾Å¹¬¸ñ
+                    int k = i / 3 * 3 + j / 3;//è®¡ç®—å½“å‰i,jå¤„äºå“ªä¸€ä¸ªä¹å®«æ ¼
                     if (a[i][num] || b[j][num] || c[k][num])
                         return false;
                     a[i][num] = 1; b[j][num] = 1; c[k][num] = 1;
