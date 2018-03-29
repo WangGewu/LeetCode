@@ -14,11 +14,11 @@ public:
             v.push_back(element);
             return;
         }
-        for (int i = n; i < candidates.size() && sum >= candidates[i]; i++)//Ä¿Ç°ÔªËØÖµĞ¡ÓÚµÈÓÚsum£¬¼ÌĞøÑ­»·
+        for (int i = n; i < candidates.size() && sum >= candidates[i]; i++)//ç›®å‰å…ƒç´ å€¼å°äºç­‰äºsumï¼Œç»§ç»­å¾ªç¯
         {
             element.push_back(candidates[i]);
-            solve(v, element, i, sum - candidates[i], candidates);//µİ¹é
-            element.pop_back();//»ØËİ
+            solve(v, element, i, sum - candidates[i], candidates);//é€’å½’
+            element.pop_back();//å›æº¯
         }
     }
 };
