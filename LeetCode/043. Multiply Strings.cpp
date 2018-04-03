@@ -18,9 +18,7 @@ public:
             if (flag)
                 temp += flag + '0';
             reverse(temp.begin(), temp.end());
-            cout << temp << endl;
             result = add(temp, result, (num1.length() - 1) - i);
-            cout << result << endl;
         }
         return result;
     }
