@@ -6,7 +6,7 @@ public:
         int i = 0;
         for(int reach=0;i<nums.size()&&i<=reach;i++)
         {
-            reach = max(i + nums[i], reach);//reachÎª¿ÉÒÔµ½´ïµÄ×îÔ¶Î»ÖÃ
+            reach = max(i + nums[i], reach);//reachä¿å­˜ç›®å‰å¯ä»¥è¾¾åˆ°çš„æœ€è¿œè·ç¦»
         }
         return i == nums.size();
     }
