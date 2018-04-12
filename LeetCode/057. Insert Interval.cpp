@@ -36,7 +36,7 @@ public:
     }
     vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
         int left = 0, right = intervals.size();
-        while (left<right)//ÕÒµ½²åÈëµÄÎ»ÖÃ
+        while (left<right)//æ‰¾åˆ°æ’å…¥çš„ä½ç½®
         {
             int mid = (left + right) / 2;
             if (intervals[mid].start <= newInterval.start)
@@ -45,6 +45,6 @@ public:
                 right = mid;
         }
         intervals.insert(intervals.begin() + left, newInterval);
-        return merge(intervals);//ºÏ²¢
+        return merge(intervals);//åˆå¹¶
     }
 };
