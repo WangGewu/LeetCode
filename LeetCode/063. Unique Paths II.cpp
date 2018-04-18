@@ -12,11 +12,11 @@ public:
                     res[i][j] = 0;
                     continue;
                 }
-                if (i != 0 && j != 0)//ÖÐ¼ä
+                if (i != 0 && j != 0)//ä¸­é—´
                     res[i][j] = res[i - 1][j] + res[i][j - 1];
-                else if (i == 0 && j != 0)//µÚÒ»ÐÐ
+                else if (i == 0 && j != 0)//ç¬¬ä¸€è¡Œ
                     res[i][j] = res[i][j - 1];
-                else if (i != 0 && j == 0)//µÚÒ»ÁÐ
+                else if (i != 0 && j == 0)//ç¬¬ä¸€åˆ—
                     res[i][j] = res[i - 1][j];
             }
         return res[m - 1][n - 1];
