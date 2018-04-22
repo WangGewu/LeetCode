@@ -5,7 +5,7 @@ public:
         int p = a.length() - 1;
         int q = b.length() - 1;
         int add1, add2;
-        int flag = 0;//标志进位
+        int flag = 0;//鏍囧織杩涗綅
         while (p >= 0 && q >= 0)
         {
             add1 = a[p] - '0';
