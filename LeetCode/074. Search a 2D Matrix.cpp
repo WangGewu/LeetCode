@@ -1,4 +1,4 @@
-/*¶ş·Ö*/
+/*äºŒåˆ†*/
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -6,7 +6,7 @@ public:
             return false;
         int m = matrix[0].size();
         int n = matrix.size();
-        int l = 0, r = m*n;//×ó±ÕÓÒ¿ª
+        int l = 0, r = m*n;//å·¦é—­å³å¼€
         while (l < r)
         {
             if (target < matrix[l / m][l%m] || matrix[(r - 1) / m][(r - 1) % m] < target)
