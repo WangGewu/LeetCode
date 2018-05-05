@@ -3,12 +3,12 @@ public:
     string minWindow(string s, string t) {
         vector<int>flag(256, 0);
         int min = INT_MAX;
-        int begin = 0, end = 0, head = 0, cnt = t.size();//cntͳ��t��ʣ��δ�ҵ�����ĸ��
+        int begin = 0, end = 0, head = 0, cnt = t.size();//cnt统计t中剩余未找到的字母数，head记录首位置
         for (int i = 0; i < t.size(); i++)
             flag[t[i]]++;
         while (end < s.size())
         {
-            if (flag[s[end]] > 0)//�ҵ�һ��t��һ����ĸ
+            if (flag[s[end]] > 0)//找到一个t中一个字母
                 cnt--;
             flag[s[end]]--;
             end++;
@@ -19,7 +19,7 @@ public:
                     min = end - begin;
                     head = begin;
                 }
-                if (flag[s[begin]] == 0)
+                if (flag[s[begin]] == 0)//begin为t中的字母,此时除t中字母外的其他字母数都是负的
                     cnt++;
                 flag[s[begin]]++;
                 begin++;
