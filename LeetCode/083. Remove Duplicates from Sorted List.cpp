@@ -10,7 +10,7 @@ class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         ListNode* newHead;
-        ListNode *currentPtr = new ListNode(1);
+        ListNode *currentPtr = new ListNode(1);//头结点
         newHead = currentPtr;
         ListNode *p = head;
         int flag = 0;
