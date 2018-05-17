@@ -3,16 +3,14 @@ public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>>result;
         vector<int>element;
-        sort(nums.begin(), nums.end());//ÏÈ¶ÔnumsÅÅĞò£¬±ÜÃâ³öÏÖ¼¯ºÏµÄÔªËØÒ»Ñù£¬µ«Î»ÖÃ²»Í¬µÄÇé¿ö
-        int min;
-        for (int i = 0; i <= nums.size(); i++)//ÒÀ´Î´¦Àí¼¯ºÏº¬ÓĞ0¡ªnums.size()¸öÔªËØ
+        for (int i = 0; i <= nums.size(); i++)//ä¾æ¬¡å¤„ç†é›†åˆå«æœ‰0â€”nums.size()ä¸ªå…ƒç´ 
         {
-            min = INT_MIN;
-            solve(result, element, nums, min, i);
+            int posi = -1;
+            solve(result, element, nums, posi, i);
         }
         return result;
     }
-    void solve(vector<vector<int>>&result, vector<int>&element, vector<int>nums, int &min, int n)
+    void solve(vector<vector<int>>&result, vector<int>&element, vector<int>nums, int posi, int n)
     {
         if (element.size() == n)
         {
@@ -21,11 +19,9 @@ public:
         }
         for (int i = 0; i < nums.size(); i++)
         {
-            if (nums[i] <= min)continue;//min¼ÇÂ¼µ±Ç°¼¯ºÏµÄ×îĞ¡Öµ,ÏÂ´Îµİ¹é´Ó±Èmin´óµÄÔªËØ¿ªÊ¼Ìí¼Ó
+            if (i <= posi)continue;//posiè®°å½•ä¸Šä¸€å±‚é€’å½’è¾¾åˆ°çš„ä½ç½®
             element.push_back(nums[i]);
-            min = nums[i];
-            solve(result, element, nums, min, n);
-            min = element[element.size() - 1];
+            solve(result, element, nums, i, n);
             element.pop_back();
         }
     }
