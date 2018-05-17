@@ -3,27 +3,27 @@ public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<vector<int>>result;
         vector<int>element;
-        sort(nums.begin(), nums.end());//ÏÈ¶ÔnumsÅÅĞò£¬±ÜÃâ³öÏÖ¼¯ºÏµÄÔªËØÒ»Ñù£¬µ«Î»ÖÃ²»Í¬µÄÇé¿ö
-        for (int i = 0; i <= nums.size(); i++)//ÒÀ´Î´¦Àí¼¯ºÏº¬ÓĞ0¡ªnums.size()¸öÔªËØ
+        sort(nums.begin(), nums.end());//å…ˆå¯¹numsæ’åºï¼Œé¿å…å‡ºç°é›†åˆçš„å…ƒç´ ä¸€æ ·ï¼Œä½†ä½ç½®ä¸åŒçš„æƒ…å†µ
+        for (int i = 0; i <= nums.size(); i++)//ä¾æ¬¡å¤„ç†é›†åˆå«æœ‰0â€”nums.size()ä¸ªå…ƒç´ 
         {
-            int posi = -1;
-            solve(result, element, nums, i, posi);
+            int posi=-1;
+            solve(result, element, nums, i,posi);
         }
         return result;
     }
-    void solve(vector<vector<int>>&result, vector<int>&element, vector<int>nums, int n, int posi)
+    void solve(vector<vector<int>>&result, vector<int>&element, vector<int>nums, int n,int posi)
     {
         if (element.size() == n)
         {
-            if (find(result.begin(), result.end(), element) == result.end())
+            if(find(result.begin(),result.end(),element)==result.end())
                 result.push_back(element);
             return;
         }
         for (int i = 0; i < nums.size(); i++)
         {
-            if (i <= posi)continue;//min¼ÇÂ¼µ±Ç°¼¯ºÏµÄ×îĞ¡Öµ,ÏÂ´Îµİ¹é´Ó±Èmin´óµÄÔªËØ¿ªÊ¼Ìí¼Ó
+            if (i <= posi)continue;//posiè®°å½•ä¸Šä¸€å±‚é€’å½’çš„ä½ç½®
             element.push_back(nums[i]);
-            solve(result, element, nums, n, i);
+            solve(result, element, nums, n,i);
             element.pop_back();
         }
     }
