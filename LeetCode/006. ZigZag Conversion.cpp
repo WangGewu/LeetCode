@@ -1,22 +1,27 @@
 class Solution {
 public:
     string convert(string s, int numRows) {
-        string result;
-        if (numRows == 1)
+        if(numRows==1)
             return s;
-        for (int i = 0; i<numRows; i++)
+        string result;
+        int cnt;
+        for(int i=0;i<numRows;i++)
         {
-            int j = i;
-            while (j<s.size())
+            cnt=0;
+            //处理中间行
+            for(int j=i;j<s.length();)
             {
-                result += s[j];
-                //处理中间行
-                if (i>0 && i<numRows - 1)
+                result+=s[j];
+                if(i==0||i==numRows-1)
+                    j+=2*numRows-2;
+                else
                 {
-                    if ((numRows - i - 1) * 2 + j<s.size())
-                        result += s[(numRows - i - 1) * 2 + j];
+                    if(cnt%2==0)
+                        j=j+2*numRows-2-2*i;
+                    else
+                        j+=2*i;
+                    cnt++;
                 }
-                j += 2 * (numRows - 1);
             }
         }
         return result;
