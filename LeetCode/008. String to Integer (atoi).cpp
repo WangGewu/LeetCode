@@ -1,46 +1,44 @@
 class Solution {
 public:
     int myAtoi(string str) {
-        string value;
-        int flag = 0;
-        long long x = 0;
-        int i;
-        for (i = 0; i<str.size(); i++)
+        string result_str;
+        int flag=1;
+        int i,j;
+        long x=0;
+        for(i=0;i<str.length();i++)
         {
-            if (!isspace(str[i]))
-                break;
-        }
-        if (str[i] == '+')
-        {
-            flag = 0;
-            i++;
-        }
-        else if (str[i] == '-')
-        {
-            flag = 1;
-            i++;
-        }
-        for (; i<str.size(); i++)
-        {
-            if (isdigit(str[i]))
+            if(!isspace(str[i]))
             {
-                value += str[i];
+                if(str[i]=='+')
+                   flag=1;
+                else if(str[i]=='-')
+                   flag=-1;
+                else if(isdigit(str[i]))
+                    result_str+=str[i];
+                else
+                    return 0;
+                break;
+            }
+        }
+        for (j=i+1;j<str.length();j++)
+        {
+            if(isdigit(str[j]))
+            {
+                result_str+=str[j];
             }
             else
-                break;
+               break;
         }
-        if (value.size()>10)
-            return flag == 0 ? 2147483647 : -2147483648;
-        for (auto i : value)
+        for (i=0;i<result_str.length();i++)
         {
-            x = x * 10 + i - '0';
+            x = x * 10 + result_str[i] - '0';
+            if (x >= 2147483648) {
+				if (flag == 1)return INT_MAX;
+				else return INT_MIN;
+			}
         }
-        if (flag == 1)
-            x = -x;
-        if (x>2147483647)
-            return 2147483647;
-        if (x<-2147483648)
-            return -2147483648;
+        if(flag==-1)
+            x=-x;
         return x;
     }
 };
