@@ -1,17 +1,16 @@
 class Solution {
 public:
     string intToRoman(int num) {
-        string Roman[4][10]{
-            { "","I","II","III","IV","V","VI","VII","VIII","IX", },
-            { "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC" },
-            { "","C","CC","CCC","CD","D","DC","DCC","DCCC","CM" },
-            { "","M","MM","MMM" }
-        };
-        string value;
-        value.append(Roman[3][num / 1000 % 10]);
-        value.append(Roman[2][num / 100 % 10]);
-        value.append(Roman[1][num / 10 % 10]);
-        value.append(Roman[0][num % 10]);
-        return value;
+        int nums[13]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        string c[]={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+        string s;
+        for(int i=0;i<13;i++)
+        {   
+            int t=num/nums[i];
+            for(int j=0;j<t;j++)
+                s+=c[i];
+            num=num%nums[i];
+        }
+        return s;
     }
 };
