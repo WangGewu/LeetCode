@@ -9,7 +9,7 @@ public:
         generate(element,0,digits,s,res);
         return res;
     }
-    void generate(string result,int index,string &digits,string s[9],vector<string>&res)
+    void generate(string result,int index,string digits,string s[9],vector<string>&res)
     {
         if(index==digits.length())
         {
