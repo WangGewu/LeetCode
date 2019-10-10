@@ -5,7 +5,7 @@ public:
         head = dfs(lists);
         return head;
     }
-    //µİ¹é½â¾öÃ¿¸öÁ´±í
+    //é€’å½’è§£å†³æ¯ä¸ªé“¾è¡¨
     ListNode* dfs(vector<ListNode*>& lists) {
         int minPos;
         int min = 99999999;
@@ -19,14 +19,55 @@ public:
                 minPos = i;
             }
         }
-        if (min == 99999999)//ËùÓĞÁ´±í¶¼´¦ÀíÍêºó·µ»Ø
+        if (min == 99999999)//æ‰€æœ‰é“¾è¡¨éƒ½å¤„ç†å®Œåè¿”å›
             return NULL;
         else
         {
-            lists[minPos] = lists[minPos]->next;//ĞŞ¸Älists
+            lists[minPos] = lists[minPos]->next;//ä¿®æ”¹lists
             ListNode* p = new ListNode(min);
-            p->next = dfs(lists);//¼ÌĞøµİ¹é
+            p->next = dfs(lists);//ç»§ç»­é€’å½’
             return p;
         }
+    }
+};
+
+
+//ç¬¬äºŒç§é€’å½’æ³•
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode* head=new ListNode(0);
+        solution(lists,head);
+        return head->next;
+    }
+    void solution(vector<ListNode*>& list,ListNode* rear)
+    {
+        int min=999999;
+        int index=-1;
+        for(int i=0;i<list.size();i++)
+        {
+            if(list[i]!=nullptr&&list[i]->val<min)
+            {
+                min=list[i]->val;
+                index=i;
+            }
+        }
+        if(min==999999)
+            return;
+        else
+        {
+            ListNode* element=new ListNode(min);
+            rear->next=element;
+            list[index]=list[index]->next;
+            solution(list,element);
+        } 
     }
 };
