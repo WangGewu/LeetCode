@@ -33,5 +33,6 @@ public:
             else
                 return h;
         }
+        return h;
     }
 };
