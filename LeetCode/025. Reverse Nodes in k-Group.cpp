@@ -1,53 +1,51 @@
 /**
-* Definition for singly-linked list.
-* struct ListNode {
-*     int val;
-*     ListNode *next;
-*     ListNode(int x) : val(x), next(NULL) {}
-* };
-*/
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        int num = 0;
-        ListNode *p = head;
+        ListNode *p = head, *q, *temp, *rear = head, *front, *rear2;
+        int cnt = 0;
+        int num = 0;//è®°å½•èŠ‚ç‚¹æ•°
         while (p)
         {
             p = p->next;
             num++;
         }
+        int n = num / k;//ç¿»è½¬æ¬¡æ•°
+        if(!n)
+            return head;
         p = head;
-        ListNode *x = new ListNode(-1);//Éú³ÉÍ·½áµã
-        x->next = head;
-        head = x;
-        ListNode *new_head = x->next, *t = x->next, *nowhead = x, *q;
-        ListNode *temphead = x;
-        int n = num / k;
-        int flag = 0;
-        for (int i = 0; i < n; i++)
+        //ç¿»è½¬
+        while (n)
         {
-            p = t;
-            nowhead = t;//±¾¶Î¶ÎÁ´±íµÄÍ·½áµã
             q = p->next;
-            int cnt = 1;
-            while (cnt<k)
+            rear2 = p;//è®°å½•å½“ä¸‹çš„å°¾èŠ‚ç‚¹
+            for (int i = 0; i<k - 1; i++)
             {
-                t = q->next;
+                temp = q->next;
                 q->next = p;
                 p = q;
-                q = t;
-                cnt++;
-                flag = 1;
+                q = temp;
             }
-            if (i == 0)
-                new_head = p;
-            if (flag)
+            front = p;//è®°å½•å½“ä¸‹çš„å¤´ç»“ç‚¹
+            if (cnt>0)
             {
-                temphead->next = p;//Ç°Ò»¶ÎÁ´±íµÄÎ²½Úµã½ÓÉÏÏÂÒ»¶ÎÁ´±íµÄÍ·½áµã
-                temphead = nowhead;//¸üÐÂÇ°Ò»¶ÎÁ´±íµÄÎ²½Úµã
+                rear->next = front;//ä¸Šä¸€æ¬¡çš„å°¾èŠ‚ç‚¹æŽ¥ä¸Šè¿™æ¬¡çš„å¤´ç»“ç‚¹
+                rear = rear2;
             }
+            else
+                head = front;
+            p = q;
+            cnt++;
+            n--;
         }
-        temphead->next = t;
-        return new_head;
+        rear2->next = p;//æŽ¥ä¸Šå‰©ä½™çš„èŠ‚ç‚¹
+        return head;
     }
 };
