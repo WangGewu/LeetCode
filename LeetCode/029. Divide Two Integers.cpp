@@ -1,8 +1,8 @@
-//²ÉÓÃÎ»ÔËËã£¬divisorÃ¿´Î³Ë2È¥±Æ½üdividend
+//é‡‡ç”¨ä½è¿ç®—ï¼Œdivisoræ¯æ¬¡ä¹˜2å»é€¼è¿‘dividend
 class Solution {
 public:
     int divide(int dividend, int divisor) {
-        int num = 0;
+        long long num = 0;
         if ((dividend == INT_MIN&&divisor == -1) || divisor == 0)
             return INT_MAX;
         int sign = ((dividend < 0) ^ (divisor < 0) == 1) ? 0 : 1;
