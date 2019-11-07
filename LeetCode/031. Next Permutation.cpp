@@ -1,13 +1,13 @@
 /*
- *´ÓºóÏòÇ°ÕÒ³öµÚÒ»¸öµÝÔö¶ÔµÄÎ»ÖÃpos
- *ÔÚposºóÕÒ³ö´óÓÚpos-1×îÐ¡µÄÖµµÄÎ»ÖÃ
- *½»»»£¬È»ºóÖØÅÅposºóµÄÔªËØ
+ *ä»ŽåŽå‘å‰æ‰¾å‡ºç¬¬ä¸€ä¸ªé€’å¢žå¯¹çš„ä½ç½®pos
+ *åœ¨posåŽæ‰¾å‡ºå¤§äºŽpos-1æœ€å°çš„å€¼çš„ä½ç½®
+ *äº¤æ¢ï¼Œç„¶åŽé‡æŽ’posåŽçš„å…ƒç´ 
  */
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         int pos = nums.size() - 1;
-        while (pos>0 && nums[pos] <= nums[pos - 1])//´ÓºóÏòÇ°ÕÒ³öµÚÒ»¸öµÝÔö¶ÔµÄÎ»ÖÃpos
+        while (pos>0 && nums[pos] <= nums[pos - 1])//ä»ŽåŽå‘å‰æ‰¾å‡ºç¬¬ä¸€ä¸ªé€’å¢žå¯¹çš„ä½ç½®pos
             pos--;
         if (pos == 0)
         {
@@ -16,7 +16,7 @@ public:
         }
         int node = pos;
         int min = 99999999;
-        for (int i = pos; i < nums.size(); i++)//ÔÚposºóÕÒ³ö´óÓÚpos - 1×îÐ¡µÄÖµµÄÎ»ÖÃ
+        for (int i = pos; i < nums.size(); i++)//åœ¨posåŽæ‰¾å‡ºå¤§äºŽpos - 1æœ€å°çš„å€¼çš„ä½ç½®
         {
             if (nums[i] > nums[pos - 1] && nums[i] < min)
             {
@@ -24,8 +24,30 @@ public:
                 min = nums[i];
             }
         }
-        swap(nums[pos - 1], nums[node]); //½»»»£¬È»ºóÖØÅÅposºóµÄÔªËØ
+        swap(nums[pos - 1], nums[node]); //äº¤æ¢ï¼Œç„¶åŽé‡æŽ’posåŽçš„å…ƒç´ 
         sort(nums.begin() + pos, nums.end());
+        return;
+    }
+};
+
+//äºŒåˆ·
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int size=nums.size(),i=size-1;
+        while(i>0&&nums[i]<=nums[i-1])
+            i--;
+        if(i==0)
+            sort(nums.begin(),nums.end());
+        else
+        {
+            int j=size-1;
+            for(;j>=i;j--)
+                if(nums[j]>nums[i-1])
+                    break;
+            swap(nums[j],nums[i-1]);
+            sort(nums.begin()+i,nums.end());
+        }
         return;
     }
 };
