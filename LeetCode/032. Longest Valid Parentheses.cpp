@@ -1,7 +1,7 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        stack<int>sta;//¶ÑÕ»´æ´¢ÆÆ»µÀ¨ºÅÆ¥ÅäµÄÀ¨ºÅµÄÏÂ±ê£¬Èç"()(()",´æ´¢2
+        stack<int>sta;//å †æ ˆå­˜å‚¨ç ´åæ‹¬å·åŒ¹é…çš„æ‹¬å·çš„ä¸‹æ ‡ï¼Œå¦‚"()(()",å­˜å‚¨2
         int len = 0;
         for (int i = 0; i < s.length(); i++)
         {
@@ -23,7 +23,7 @@ public:
         else
         {
             int right = s.length() - 1;
-            while (!sta.empty())//¸ù¾İ¶ÑÕ»±£´æµÄÏÂ±ê½«Ô­s·Ö¸î¿ª£¬¼ÆËã×î´óµÄ³¤¶È
+            while (!sta.empty())//æ ¹æ®å †æ ˆä¿å­˜çš„ä¸‹æ ‡å°†åŸsåˆ†å‰²å¼€ï¼Œè®¡ç®—æœ€å¤§çš„é•¿åº¦
             {
                 int left = sta.top();
                 sta.pop();
@@ -33,5 +33,27 @@ public:
             len = max(len, right + 1);
         }
         return len;
+    }
+};
+
+//2åˆ·
+//åŠ¨æ€è§„åˆ’
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int length=s.length();
+        int max=0;
+        vector<int>dp(length);
+        for(int i=1;i<length;i++)
+        {
+            if(s[i]==')'&&s[i-1]=='(')
+                dp[i]=2+((i-2)>=0?dp[i-2]:0);
+            if(s[i]==')'&&s[i-1]==')')
+                if(i-dp[i-1]-1>=0&&s[i-dp[i-1]-1]=='(')
+                    dp[i]=dp[i-1]+2+((i-dp[i-1]-2)>=0?dp[i-dp[i-1]-2]:0);
+            if(dp[i]>max)
+                max=dp[i];
+        }
+        return max;
     }
 };
