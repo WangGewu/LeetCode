@@ -23,3 +23,34 @@ public:
         return res;
     }
 };
+
+//2刷
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int result=0;
+        //按行遍历，每行每行算，超时
+        while(1)
+        {
+            int last_pos=-1;
+            int current=0;
+            for(int i=0;i<height.size();i++)
+            {
+                if(height[i]>0&&last_pos==-1)
+                {
+                    last_pos=i;
+                }
+                else if(last_pos!=-1&&height[i]>0)
+                {
+                    current+=1*(i-last_pos-1);
+                    last_pos=i;
+                }
+                height[i]--;
+            }
+            if(last_pos==-1)
+                break;
+            result+=current;
+        }
+        return result;
+    }
+};
