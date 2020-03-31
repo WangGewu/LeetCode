@@ -39,3 +39,34 @@ public:
         return res;
     }
 };
+
+//2
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>>result(n,vector<int>(n,0));
+        int iter=(n+1)/2;
+        int num=1;
+        for(int i=0;i<iter;i++)
+        {
+            int start_x=i,start_y=i;
+            int left=i,top=i,right=n-1-i,bottem=n-1-i;
+            int current_x=start_x,current_y=start_y;
+            while(1)
+            {
+                result[current_y][current_x]=num++;
+                if(num>n*n||(current_x==start_x&&current_y==start_y+1))
+                    break;
+                if(current_y==top&&current_x!=right)
+                    current_x++;
+                else if(current_y==bottem&&current_x!=left)
+                    current_x--;
+                else if(current_x==right&&current_y!=bottem)
+                    current_y++;
+                else if(current_x==left&&current_y!=top)
+                    current_y--;
+            }
+        }
+        return result;
+    }
+};
