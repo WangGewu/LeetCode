@@ -1,27 +1,32 @@
-/*¶¯Ì¬¹æ»®*/
+/*åŠ¨æ€è§„åˆ’*/
 class Solution {
 public:
     int uniquePaths(int m, int n) {
         vector<vector<int>>res(m, vector<int>(n, 1));
-        //µ½´ïµÚÒ»ĞĞ¡¢µÚÒ»ÁĞµÄµãµÄÂ·¾¶ÊıÎª1
+        //åˆ°è¾¾ç¬¬ä¸€è¡Œã€ç¬¬ä¸€åˆ—çš„ç‚¹çš„è·¯å¾„æ•°ä¸º1
         for (int i = 1; i<m; i++)
             for (int j = 1; j<n; j++)
                 res[i][j] = res[i - 1][j] + res[i][j - 1];
         return res[m - 1][n - 1];
     }
-    /*µİ¹é»á³¬Ê±
-    void Go(int posi_X,int posi_Y,int m,int n,int &cntPath)
-    {
-
-    if(posi_X==m-1&&posi_Y==n-1)
-    {
-    cntPath++;
-    return;
+ //2é€’å½’
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<vector<int>>result(n,vector<int>(m,0));   
+        int count=solve(result,0,0,m,n);
+        return count;
     }
-    if(posi_X<m-1)
-    Go(posi_X+1,posi_Y,m,n,cntPath);
-    if(posi_Y<n-1)
-    Go(posi_X,posi_Y+1,m,n,cntPath);
+    int solve(vector<vector<int>>&result, int x, int y, int m, int n)
+    {
+        if (x == m - 1 && y == n - 1)
+            result[y][x] = 1;
+        else if (x == m - 1)
+            result[y][x] = (result[y+1][x]!=0)?result[y+1][x]:solve(result, x, y+1, m, n);
+        else if (y == n - 1)
+            result[y][x] = (result[y][x+1]!=0)?result[y][x+1]:solve(result, x+1, y, m, n);
+        else
+            result[y][x] = ((result[y+1][x]!=0)?result[y+1][x]:solve(result, x, y+1, m, n)) + ((result[y][x+1]!=0)?result[y][x+1]:solve(result, x+1, y, m, n));
+        return result[y][x];
     }
-    */
 };
