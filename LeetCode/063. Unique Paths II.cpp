@@ -22,3 +22,30 @@ public:
         return res[m - 1][n - 1];
     }
 };
+//2
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int n=obstacleGrid.size();
+        int m=obstacleGrid[0].size();
+        vector<vector<long>>result(n,vector<long>(m,0));//int会溢出
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+            {   
+                if(i==0&&j==0)
+                {
+                    result[i][j]=(obstacleGrid[i][j]==1)?0:1;
+                    continue;
+                }   
+                if(obstacleGrid[i][j]==1)//有障碍
+                    result[i][j]=0;
+                else if(i==0)//第一行
+                    result[i][j]=result[i][j-1];
+                else if(j==0)//第一列
+                    result[i][j]=result[i-1][j];
+                else //中间
+                    result[i][j]=result[i-1][j]+result[i][j-1];
+            }
+        return result[n-1][m-1];
+    }
+};
