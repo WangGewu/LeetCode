@@ -34,3 +34,37 @@ public:
         return res;
     }
 };
+//2
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int p_a=a.length()-1,p_b=b.length()-1;
+        string result;
+        int flag=0;
+        while(p_a>=0&&p_b>=0)
+        {
+            int num_a=a[p_a]-'0',num_b=b[p_b]-'0';
+            result+=(num_a+num_b+flag)%2+'0';
+            flag=(num_a+num_b+flag)/2;
+            p_a--;p_b--;
+        }
+        while(p_a>=0)
+        {
+            int num_a=a[p_a]-'0';
+            result+=((num_a+flag)%2)+'0';
+            flag=(num_a+flag)/2;
+            p_a--;
+        }
+        while(p_b>=0)
+        {
+            int num_b=b[p_b]-'0';
+            result+=((num_b+flag)%2)+'0';
+            flag=(num_b+flag)/2;
+            p_b--;
+        }
+        if(flag)
+            result+='1';
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
