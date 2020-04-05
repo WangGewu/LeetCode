@@ -9,9 +9,26 @@ public:
             int mid = l + (r - l) / 2;
             if (mid > x / mid)
                 r = mid - 1;
-            else if (mid <= x / mid)//l×ó±ßµÄÊıµÄÆ½·½¶¼Ğ¡ÓÚµÈÓÚx
+            else if (mid <= x / mid)//lå·¦è¾¹çš„æ•°çš„å¹³æ–¹éƒ½å°äºç­‰äºx
                 l = mid + 1;
         }
         return l - 1;
+    }
+};
+
+//ç‰›é¡¿æ³•
+class Solution {
+public:
+    int mySqrt(int x) {
+        if(x==0||x==1)
+            return x;
+        double res=x;
+        double new_res=(res+x/res)/2;
+        while(abs(new_res-res)>=1)//æ–Ÿé…Œ
+        {
+            res=new_res;
+            new_res=(res+x/res)/2;
+        }
+        return int(new_res);
     }
 };
