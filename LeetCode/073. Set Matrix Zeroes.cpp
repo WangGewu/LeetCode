@@ -1,15 +1,15 @@
 class Solution {
-public:
+public:https://github.com/WangGewu/LeetCode/blob/master/LeetCode/074.%20Search%20a%202D%20Matrix%20.cpp
     void setZeroes(vector<vector<int>>& matrix) {
         int flag_row = false;
         int flag_col = false;
-        for (int i = 0; i<matrix[0].size(); i++)//µÚÒ»ÐÐ
+        for (int i = 0; i<matrix[0].size(); i++)//ç¬¬ä¸€è¡Œ
             if (matrix[0][i] == 0)
             {
                 flag_row = true;
                 break;
             }
-        for (int i = 0; i<matrix.size(); i++)//µÚÒ»ÁÐ
+        for (int i = 0; i<matrix.size(); i++)//ç¬¬ä¸€åˆ—
             if (matrix[i][0] == 0)
             {
                 flag_col = true;
@@ -24,22 +24,22 @@ public:
                     matrix[0][j] = 0;
                 }
             }
-        for (int i = 1; i<matrix[0].size(); i++) //ÌîÁÐ
+        for (int i = 1; i<matrix[0].size(); i++) //å¡«åˆ—
         {
             if (matrix[0][i] == 0)
                 for (int j = 1; j<matrix.size(); j++)
                     matrix[j][i] = 0;
         }
-        for (int i = 1; i<matrix.size(); i++)//ÌîÐÐ
+        for (int i = 1; i<matrix.size(); i++)//å¡«è¡Œ
         {
             if (matrix[i][0] == 0)
                 for (int j = 1; j<matrix[0].size(); j++)
                     matrix[i][j] = 0;
         }
-        if (flag_row)//µÚÒ»ÐÐ
+        if (flag_row)//ç¬¬ä¸€è¡Œ
             for (int i = 0; i<matrix[0].size(); i++)
                 matrix[0][i] = 0;
-        if (flag_col)//µÚÒ»ÁÐ
+        if (flag_col)//ç¬¬ä¸€åˆ—
             for (int i = 0; i<matrix.size(); i++)
                 matrix[i][0] = 0;
     }
