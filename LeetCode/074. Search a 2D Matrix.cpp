@@ -4,21 +4,34 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         if (matrix.empty())
             return false;
-        int m = matrix[0].size();
-        int n = matrix.size();
-        int l = 0, r = m*n;//左闭右开
-        while (l < r)
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int left=0,right=m*n;
+        while(left<right)
         {
-            if (target < matrix[l / m][l%m] || matrix[(r - 1) / m][(r - 1) % m] < target)
-                return false;
-            int mid = (l + r) / 2;
-            if (target < matrix[mid / m][mid%m])
-                r = mid;
-            else if (matrix[mid / m][mid%m] < target)
-                l = mid + 1;
-            else
+            int mid=(left+right)/2;
+            if(matrix[mid/n][mid%n]<target)
+                left=mid+1;
+            else if(matrix[mid/n][mid%n]>target)
+                right=mid;
+            else  
                 return true;
         }
         return false;
     }
 };
+//2 更快
+public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix.length == 0)
+            return false;
+        int row = 0, col = matrix[0].length-1;
+        while(row < matrix.length && col >= 0){
+            if(matrix[row][col] < target)
+                row++;
+            else if(matrix[row][col] > target)
+                col--;
+            else
+                return true;
+        }
+        return false;
+    };
