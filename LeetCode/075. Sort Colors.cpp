@@ -34,3 +34,20 @@ public:
         }
     }
 };
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int l=0,r=nums.size()-1;
+        int current=0;
+        while(l<=current&&r>=current)
+        {
+            if(nums[current]==0&&current>l)
+                swap(nums[current],nums[l++]);
+            else if(nums[current]==2&&current<r)
+                swap(nums[current],nums[r--]);
+            else
+                current++;
+        }
+    }
+};
