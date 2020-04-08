@@ -11,3 +11,26 @@ public:
         }
     }
 };
+
+//2
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int end=nums.size();
+        for(int i=0;i<end;i++)
+        {
+            if(nums[i]==0)
+            {
+                nums.erase(i+nums.begin());
+                nums.insert(nums.begin(),0);
+            }
+            else if(nums[i]==2)
+            {
+                nums.erase(i+nums.begin());
+                nums.insert(nums.end(),2);
+                i--;
+                end--;
+            }
+        }
+    }
+};
