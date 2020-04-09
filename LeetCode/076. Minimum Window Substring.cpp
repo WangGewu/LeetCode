@@ -1,3 +1,5 @@
+双指针
+
 class Solution {
 public:
     string minWindow(string s, string t) {
@@ -26,5 +28,43 @@ public:
             }
         }
         return min == INT_MAX ? "" : s.substr(head, min);
+    }
+};
+//2
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        string result;
+        int min_length=s.length()+1;
+        map<char,int>h;
+        for(int i=0;i<t.length();i++)//记录t中字母的频次
+            h[t[i]]++;
+        int left=0,right=0,cnt=t.length();//cnt用来标记s是否包含了t
+        while(right<s.length())//移动右指针
+        {
+            if(t.find(s[right])!=t.npos)//right在t中
+            {
+                if(h[s[right]]>0)
+                    cnt--;
+                h[s[right]]--;
+            }
+            while(cnt==0)//移动左指针
+            {
+                if((right-left+1)<min_length)
+                {
+                    result=s.substr(left,right-left+1);
+                    min_length=right-left+1;
+                }
+                if(t.find(s[left])!=t.npos)
+                {
+                    if(h[s[left]]>=0)
+                        cnt++;
+                    h[s[left]]++;
+                }
+                left++;
+            }
+            right++;
+        }
+        return result;
     }
 };
