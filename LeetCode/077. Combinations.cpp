@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
-        int min = 0;//¼ÇÂ¼vectorÖĞÖµ×îĞ¡µÄÔªËØ£¬ÏÂÒ»´Îµİ¹é´Ó±Èmin´óµÄÊı¿ªÊ¼
+        int min = 0;//è®°å½•vectorä¸­å€¼æœ€å°çš„å…ƒç´ ï¼Œä¸‹ä¸€æ¬¡é€’å½’ä»æ¯”minå¤§çš„æ•°å¼€å§‹
         vector<vector<int>> result;
         vector<int>element;
         solve(result, element, n, k, min);
@@ -23,5 +23,35 @@ public:
             element.pop_back();
             min = element[element.size() - 1];
         }
+    }
+};
+
+//2
+//C(m,n)=C(m-1,n)+C(m-1,n-1)
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>>result;
+        vector<int>element;
+        if(k==1)
+            for(int i=1;i<=n;i++)
+                result.push_back(vector<int>(1,i));
+        else if(k==n)
+        {
+            vector<int>element;
+            for(int i=1;i<=n;i++)
+                element.push_back(i);
+            result.push_back(element);
+        }
+        else
+        {
+            vector<vector<int>>result1=combine(n-1,k);
+            vector<vector<int>>result2=combine(n-1,k-1);
+            for(int i=0;i<result2.size();i++)
+                result2[i].push_back(n);
+            result.insert(result.end(),result1.begin(),result1.end());
+            result.insert(result.end(),result2.begin(),result2.end());
+        }
+        return result;
     }
 };
