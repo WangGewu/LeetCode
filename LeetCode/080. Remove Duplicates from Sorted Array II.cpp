@@ -9,13 +9,13 @@ public:
             if (i != 0 && nums[i] == nums[i - 1])currentLen++;
             else
             {
-                if (currentLen > 2)//Êı×ÖµÄ¸öÊı´óÓÚ2£¬½øĞĞremove
+                if (currentLen > 2)//æ•°å­—çš„ä¸ªæ•°å¤§äº2ï¼Œè¿›è¡Œremove
                 {
                     cout << i << endl;
                     for (int j = i - currentLen + 2; j < nums.size() - cnt - (currentLen - 2); j++)
                         nums[j] = nums[j + currentLen - 2];
                     cnt += (currentLen - 2);
-                    i = i - (currentLen - 2);//ÒÆ¶¯ºóÔªËØÎ»ÖÃ·¢Éú±ä»¯£¬»ØÒÆi£¬Ê¹iÖ¸ÏòÒª´¦ÀíµÄÏÂÒ»¸öÔªËØ
+                    i = i - (currentLen - 2);//ç§»åŠ¨åå…ƒç´ ä½ç½®å‘ç”Ÿå˜åŒ–ï¼Œå›ç§»iï¼Œä½¿iæŒ‡å‘è¦å¤„ç†çš„ä¸‹ä¸€ä¸ªå…ƒç´ 
                 }
                 currentLen = 1;
             }
@@ -23,5 +23,47 @@ public:
         if (currentLen>2)
             cnt += currentLen - 2;
         return lastLen - cnt;
+    }
+};
+//2
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int end=nums.size(),current_len=1;//å½“å‰æ•°å­—çš„é¢‘æ¬¡
+        for(int i=1;i<end;i++)
+        {
+            if(nums[i]==nums[i-1])
+                current_len++;
+            else
+            {
+                if(current_len>2)
+                {
+                    for(int j=i;j<end;j++)
+                        nums[j-(current_len-2)]=nums[j];
+                    end=end-(current_len-2);
+                    i=i-(current_len-2);
+                    current_len=1;
+                }
+                else
+                    current_len=1;
+            }
+        }
+        return current_len>2?end-(current_len-2):end;
+    }
+};
+
+//2
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.size()<3)
+            return nums.size();
+        int len=2;//æ–°æ•°ç»„é•¿åº¦
+        for(int i=2;i<nums.size();i++)
+        {
+            if(nums[i]!=nums[len-2])//å¦‚æœå½“å‰å…ƒç´ ä¸ç­‰äºå·²å¤„ç†æ•°æ®çš„å€’æ•°ç¬¬äºŒä¸ªå…ƒç´ 
+                nums[len++]=nums[i];
+        }
+        return len;
     }
 };
