@@ -13,11 +13,11 @@ public:
         ListNode *currentPtr = new ListNode(1);
         ListNode* newHead = currentPtr;
         l = head;
-        if (!l || !l->next)//´¦ÀíÓÐ0¡¢1¸ö½ÚµãµÄÇé¿ö
+        if (!l || !l->next)//å¤„ç†æœ‰0ã€1ä¸ªèŠ‚ç‚¹çš„æƒ…å†µ
             return head;
         p = l->next;
         q = p->next;
-        if (!q)//´¦ÀíÓÐÁ½¸ö½ÚµãµÄÇé¿ö
+        if (!q)//å¤„ç†æœ‰ä¸¤ä¸ªèŠ‚ç‚¹çš„æƒ…å†µ
         {
             if (p->val != l->val)
                 return head;
@@ -36,8 +36,53 @@ public:
             }
             l = p; p = q; q = q->next;
         }
-        if (p->val != l->val)//´¦Àí×îºóÒ»¸öÔªËØ
+        if (p->val != l->val)//å¤„ç†æœ€åŽä¸€ä¸ªå…ƒç´ 
             currentPtr->next = new ListNode(p->val);
         return newHead->next;
+    }
+};
+//2
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head==NULL)//0ä¸ªèŠ‚ç‚¹
+            return head;
+        else if(head->next==NULL)//1ä¸ªèŠ‚ç‚¹
+            return head;
+        ListNode* p=head;
+        ListNode* newhead=new ListNode(-1);
+        ListNode* current=newhead;
+        if(p->next->val!=p->val)//å¤„ç†ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
+        {
+            current->next=p;
+            current=current->next;
+        }
+        while(p->next->next)
+        {
+            ListNode* left=p;
+            ListNode* mid=p->next;
+            ListNode* right=p->next->next;
+            if(left->val!=mid->val&&mid->val!=right->val)
+            {    
+                current->next=mid;
+                current=current->next;
+            }
+            p=p->next;
+        }
+        if(p->next->val!=p->val)//å¤„ç†æœ€åŽä¸€ä¸ªèŠ‚ç‚¹
+        {    
+            current->next=p->next;
+            current=current->next;
+        }
+        current->next=NULL;
+        return newhead->next;
     }
 };
