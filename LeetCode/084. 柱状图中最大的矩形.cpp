@@ -1,4 +1,4 @@
-//·ÖÖÎ£¬×îºóÒ»¸öÀı×Ó³¬Ê±
+//åˆ†æ²»ï¼Œæœ€åä¸€ä¸ªä¾‹å­è¶…æ—¶
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
@@ -12,12 +12,12 @@ public:
         if(left>right)
             return 0;
         int min_height=heights[left],min_posi=left;
-        for(int i=left;i<=right;i++)//ÕÒ×îĞ¡
+        for(int i=left;i<=right;i++)//æ‰¾æœ€å°
             if(heights[i]<min_height)
             {
                 min_height=heights[i];
                 min_posi=i;
             }
-        return max(max(solve(heights,left,min_posi-1),solve(heights,min_posi+1,right)),min_height*(right-left+1));//ÒÔ×îĞ¡Îª·Ö½ç£¬±È½Ïleft-right¡¢left-£¨posi-1£©£¬£¨posi+1£©-right
+        return max(max(solve(heights,left,min_posi-1),solve(heights,min_posi+1,right)),min_height*(right-left+1));//ä»¥æœ€å°ä¸ºåˆ†ç•Œï¼Œæ¯”è¾ƒleft-rightã€left-ï¼ˆposi-1ï¼‰ï¼Œï¼ˆposi+1ï¼‰-right
     }
 };
